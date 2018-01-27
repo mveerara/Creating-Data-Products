@@ -1,0 +1,36 @@
+---
+title: "MyMap"
+author: "Mukund"
+date: "27 January 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r }
+library(leaflet)
+MyLocations <- c(
+  "<a href='http://www.ukn.co.in/esperanza/'>My Sweet Home</a>",
+  "<a href='http://deensacademy.com/'>My Son's School</a>"
+  )
+
+HomeIcon <- makeIcon(iconUrl = "http://www.ukn.co.in/esperanza/img/slider/Esperanza-by-UKn_logo-(280-x-80).jpg",
+                    iconWidth = 31*500/230, iconHeight = 31,
+                    iconAnchorX = 31*500/230/2, iconAnchorY = 16)
+SchoolIcon <- makeIcon(iconUrl = "http://deensacademy.com/wp-content/uploads/2015/06/Deens-Academy.jpg",
+                  iconWidth = 31*500/230, iconHeight = 31,
+                    iconAnchorX = 31*500/230/2, iconAnchorY = 16)
+##myiconlist <- c(HomeIcon,SchoolIcon)
+##df <- data.frame(lat = c(12.9525,12.9755),lng = c(77.7207,77.7435))
+my_map <- leaflet() %>%addTiles() %>%addMarkers(lat = 12.9525, lng =77.7207, popup="<a href='http://www.ukn.co.in/esperanza/'>My Sweet Home</a>",icon=HomeIcon) %>% addCircles(lng = 77.7207, lat = 12.9525, radius = 1000,color = "#03F", weight = 5,opacity = 0.5, fill = TRUE, fillColor = "BLUE", fillOpacity = 0.2,popup = "<a href='https://en.wikipedia.org/wiki/Varthur'>My NeighbourHood</a>")
+my_map <- my_map %>%addMarkers(lat=12.9755, lng=77.7435, 
+             popup="<a href='http://deensacademy.com/'>My Son's School</a>",icon=SchoolIcon)
+
+my_map
+
+```
+
